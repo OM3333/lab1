@@ -4,7 +4,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-        int seed = 12504;
+        int seed = 221233215;
         //interesting seeds
         //221233213 gives a spike
         SvgScene svgScene = new SvgScene();
