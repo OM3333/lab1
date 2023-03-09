@@ -19,8 +19,8 @@ public class Segment {
     }
 
     public static Segment[] perpendicular(Segment s, Point p){
-        int xP = s.end.x-s.start.x;
-        int yP = s.end.y-s.start.y;
+        double xP = s.end.x-s.start.x;
+        double yP = s.end.y-s.start.y;
         Point startP = new Point(-yP+p.x,xP+p.y);
         Point startP2 = new Point(yP+p.x,-xP+p.y);
         Segment result1 = new Segment(startP,p);

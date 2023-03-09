@@ -4,9 +4,16 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Segment s = new Segment(new Point(100,100),new Point(200,200));
-        System.out.println(s.toSvg()+"\n");
-        System.out.println(Segment.perpendicular(s,new Point(100,200))[0].toSvg());
-        System.out.println(Segment.perpendicular(s,new Point(100,200))[1].toSvg());
+        int seed = 141110;
+        //interesting seeds
+        //221233213 gives a spike
+        SvgScene svgScene = new SvgScene();
+        for(int i = 0;i<10;++i){
+            Polygon toAdd = new Polygon(10,new Style("red","green",3));
+            toAdd.randomizePointArray(i*seed);
+            svgScene.addPolygon(toAdd);
+        }
+        svgScene.save("abc123.html");
+
     }
 }
