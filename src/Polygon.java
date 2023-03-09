@@ -2,13 +2,12 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class Polygon {
+public class Polygon extends Shape {
     private Point[] pointArray;
-    private Style style;
 
     public Polygon(int vertices, Style style){
+        super(style);
         pointArray = new Point[vertices];
-        this.style = style;
     }
 
     public void setPoint(int index, Point point){
@@ -35,6 +34,18 @@ public class Polygon {
 
         String polygonSvg = String.format(Locale.ENGLISH,"<polygon %s %s/>",pointPart,stylePart);
         return polygonSvg;
+    }
+
+    public static Polygon square(Segment segment, Style style){
+        Polygon result = new Polygon(4,style);
+        Point middlePoint = new Point((segment.start.x+segment.end.x)/2,(segment.start.y+segment.end.y)/2);
+        Segment perpendicularSegmentA = Segment.perpendicular(segment,middlePoint)[0];
+        Segment perpendicularSegmentB = Segment.perpendicular(segment,middlePoint)[1];
+        result.setPoint(0,segment.start);
+        result.setPoint(1,perpendicularSegmentB.start);
+        result.setPoint(2,segment.end);
+        result.setPoint(3,perpendicularSegmentA.start);
+        return result;
     }
 
 }
